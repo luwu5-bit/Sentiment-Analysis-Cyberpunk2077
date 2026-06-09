@@ -41,7 +41,8 @@ Wer die volle Pipeline reproduzieren will, muss die Rohdaten zuerst selbst herun
 └── data/                     # NICHT in Git (außer sample/)
     ├── raw/                  # heruntergeladene Reddit-Dumps + Steam-CSV
     ├── processed/            # gefilterte Parquet-Zwischenstände
-    └── sample/               # kleines Sample fürs ZIP (1-2 Monate)
+    └── sample/               # kleines Sample fürs ZIP (1-2 Monate), IM Git
+        └── patch_timeline.csv  # hand-gepflegte Patch-Tabelle (klein, gehört ins Repo)
 ```
 
 ---
@@ -59,8 +60,11 @@ Wer die volle Pipeline reproduzieren will, muss die Rohdaten zuerst selbst herun
 2. Als CSV unter `data/raw/steam/` ablegen.
 
 ### Patch-Timeline
-- `data/raw/patch_timeline.csv` — kleine, von Hand gepflegte Tabelle:
-  `patch_name, release_date, platform, notes` (Patches bis 2.0 / Phantom Liberty).
+- `data/sample/patch_timeline.csv` — kleine, von Hand gepflegte Tabelle:
+  `patch_name, release_date, platform, notes` (1.0 Launch … 2.1 / Phantom Liberty).
+- Liegt im Gegensatz zu den großen Dumps **schon im Repo** (klein, nicht-personenbezogen)
+  und ist bereits befüllt — muss also nicht separat beschafft werden. Gilt für `sample`
+  und `full` gleichermaßen.
 
 ---
 
