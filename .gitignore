@@ -1,5 +1,7 @@
 # === Daten (NIE committen — zu groß für Git/GitHub) ===
-data/
+# data/* (nicht data/) — sonst steigt Git nicht ins Verzeichnis ab und die
+# !data/sample/-Ausnahme unten wuerde nicht greifen.
+data/*
 *.zst
 *.bz2
 *.gz
