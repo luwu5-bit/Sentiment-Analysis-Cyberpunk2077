@@ -1,0 +1,38 @@
+# === Daten (NIE committen — zu groß für Git/GitHub) ===
+data/
+*.zst
+*.bz2
+*.gz
+*.parquet
+*.csv
+# Ausnahme: kleines Sample, das wir bewusst beilegen wollen
+!data/sample/
+!data/sample/**
+
+# === Jupyter ===
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# === Python ===
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+
+# === Spark ===
+spark-warehouse/
+metastore_db/
+derby.log
+*.crc
+_SUCCESS
+
+# === VS Code / OS ===
+.vscode/
+.DS_Store
+Thumbs.db
+
+# === Credentials (falls ihr API-Keys nutzt) ===
+.env
+*.key
