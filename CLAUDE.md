@@ -70,3 +70,6 @@ data/        # NICHT in Git (außer data/sample/)
 
 Keine festen Rollen. Die im Proposal genannten Zuständigkeiten stehen nur formal drin —
 Arbeit wird in der Praxis nach Arbeitspaketen verteilt, nicht nach Personen.
+
+## Roadmap
+Du kannst die datei Roadmap_Cyberpunk_Sentiment_Group1.md als Unterstützung nehmen. Bitte hacke immer die bereits erstellten Punkte ab, wenn du sicher bist das der schritt implementiert wurde. Weiße mich darauf hin falls punkte selbstständig nachbearbeitet werden müssen. 
