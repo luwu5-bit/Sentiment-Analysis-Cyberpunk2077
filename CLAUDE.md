@@ -1,7 +1,8 @@
 # CLAUDE.md
 
 Kontext für Claude Code bei der Arbeit an diesem Projekt.
-
+## Sprache 
+alle kommentare und texte die wichtig für die abgabe sind sollen in englisch geschrieben werden.
 ## Projekt
 
 **Anatomy of a Redemption** — Spark-basierte Multi-Source Sentiment-Analyse von
@@ -63,7 +64,7 @@ data/        # NICHT in Git (außer data/sample/)
 
 ## Konventionen
 
-- Sprache im Code-Kommentar/README: Deutsch ist ok, Code-Bezeichner Englisch.
+- Sprache in Code-Kommentaren, Notebook-Markdown und README: **Englisch** (abgabe-relevant). Code-Bezeichner: Englisch.
 - Spaltennamen des Steam-Datasets (`review`, `timestamp_created` etc.) ggf. an das
   konkret verwendete Dataset anpassen — vor dem Hardcoden prüfen.
 - Vor jedem Notebook-Commit: alle Zellen durchlaufen lassen, Outputs drinlassen, speichern.

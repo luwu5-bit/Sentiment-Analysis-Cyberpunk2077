@@ -1,142 +1,140 @@
 # Anatomy of a Redemption
-### Spark-basierte Multi-Source Sentiment-Analyse von Cyberpunk 2077
+### Spark-Based Multi-Source Sentiment Analysis of Cyberpunk 2077
 
 Lab Group 1 — Data Processing 2, SS 2026
 
 ---
 
-## Überblick
+## Overview
 
-Batch-Pipeline in Apache Spark, die Reddit-Kommentare und Steam-Reviews zu Cyberpunk 2077
-über das 34-Monats-Fenster (Dez 2020 – Dez 2023) verarbeitet, mit VADER ein Sentiment vergibt
-und die zwei Sentiment-Zeitreihen gegen eine Patch-Timeline ausrichtet.
-
----
-
-## ⚠️ Wichtig: Daten sind NICHT im Repo
-
-Die rohen Reddit-Dumps (mehrere zehn bis hundert GB) liegen **nicht** in diesem Repo und
-**nicht** im Abgabe-ZIP — sie sind zu groß für Git/GitHub. Im Repo/ZIP liegt nur:
-
-- der gesamte Code (`notebooks/`, `src/`)
-- ein **kleines Sample** unter `data/sample/`, mit dem die Pipeline demonstrierbar ist
-
-Wer die volle Pipeline reproduzieren will, muss die Rohdaten zuerst selbst herunterladen
-(siehe unten) und unter `data/raw/` ablegen.
+Batch pipeline in Apache Spark processing Reddit comments and Steam reviews for Cyberpunk 2077
+over a 34-month window (Dec 2020 – Dec 2023), assigning sentiment via VADER and aligning
+the two sentiment time series against a patch timeline.
 
 ---
 
-## Ordnerstruktur
+## Important: Data is NOT in the Repository
+
+The raw Reddit dumps (tens to hundreds of GB) are **not** in this repository and
+**not** in the submission ZIP — they are too large for Git/GitHub. The repository/ZIP contains only:
+
+- all code (`notebooks/`, `src/`)
+- a **small sample** under `data/sample/`, with which the pipeline can be demonstrated
+
+To reproduce the full pipeline, the raw data must be downloaded first
+(see below) and placed under `data/raw/`.
+
+---
+
+## Folder Structure
 
 ```
 .
 ├── .gitignore
 ├── README.md
 ├── notebooks/
-│   └── pipeline.ipynb        # Haupt-Notebook (läuft end-to-end durch)
-├── src/                      # ausgelagerte Hilfsfunktionen (optional)
-├── results/                  # finale, aggregierte Outputs für den Report (klein, IM Repo)
-│   ├── figures/              # exportierte Plots (.png)
-│   └── RUN_INFO.txt          # Modus + Datenfenster des Laufs
-└── data/                     # NICHT in Git (außer sample/)
-    ├── raw/                  # heruntergeladene Reddit-Dumps + Steam-CSV
-    ├── processed/            # gefilterte Parquet-Zwischenstände
-    └── sample/               # kleines Sample fürs ZIP (1-2 Monate), IM Git
-        └── patch_timeline.csv  # hand-gepflegte Patch-Tabelle (klein, gehört ins Repo)
+│   └── pipeline.ipynb        # main notebook (runs end-to-end)
+├── src/                      # helper functions (optional)
+├── results/                  # final, aggregated outputs for the report (small, IN the repo)
+│   ├── figures/              # exported plots (.png)
+│   └── RUN_INFO.txt          # mode + data window of the run
+└── data/                     # NOT in Git (except sample/)
+    ├── raw/                  # downloaded Reddit dumps + Steam CSV
+    ├── processed/            # filtered Parquet intermediates
+    └── sample/               # small sample for the ZIP (1-2 months), IN Git
+        └── patch_timeline.csv  # manually maintained patch table (small, belongs in the repo)
 ```
 
 ---
 
-## Daten beschaffen
+## Obtaining the Data
 
-### Reddit (Pushshift Monthsdumps)
-1. Monatliche Dumps für **Dez 2020 – Dez 2023** herunterladen
-   (z.B. via die academic Torrents / Pushshift-Archive, `.zst`-komprimiert, zeilenweise JSON).
-2. Dateien unter `data/raw/reddit/` ablegen, **nicht entpacken** —
-   Spark liest `.zst` direkt.
+### Reddit (Pushshift Monthly Dumps)
+1. Download monthly dumps for **Dec 2020 – Dec 2023**
+   (e.g. via academic torrents / Pushshift archive, `.zst`-compressed, line-delimited JSON).
+2. Place files under `data/raw/reddit/`, **do not unpack** —
+   Spark reads `.zst` directly.
 
 ### Steam Reviews
-1. Öffentliches Steam-Reviews-Dataset herunterladen, auf Cyberpunk 2077 (App-ID 1091500) filtern.
-2. Als CSV unter `data/raw/steam/` ablegen.
+1. Download the public Steam Reviews dataset, filter for Cyberpunk 2077 (App-ID 1091500).
+2. Place as CSV under `data/raw/steam/`.
 
-### Patch-Timeline
-- `data/sample/patch_timeline.csv` — kleine, von Hand gepflegte Tabelle:
-  `patch_name, release_date, platform, notes` (1.0 Launch … 2.1 / Phantom Liberty).
-- Liegt im Gegensatz zu den großen Dumps **schon im Repo** (klein, nicht-personenbezogen)
-  und ist bereits befüllt — muss also nicht separat beschafft werden. Gilt für `sample`
-  und `full` gleichermaßen.
+### Patch Timeline
+- `data/sample/patch_timeline.csv` — small, manually maintained table:
+  `patch_name, release_date, platform, notes` (1.0 Launch ... 2.1 / Phantom Liberty).
+- Unlike the large dumps, this file is **already in the repository** (small, non-personal)
+  and is pre-filled — it does not need to be obtained separately. Applies to both `sample`
+  and `full` mode.
 
 ---
 
 ## Setup
 
 ```bash
-# venv anlegen (optional, empfohlen)
+# create venv (optional, recommended)
 python3 -m venv .venv && source .venv/bin/activate
 
-# Abhängigkeiten
+# dependencies
 pip install pyspark findspark vaderSentiment pandas matplotlib
 
-# Jupyter starten
+# start Jupyter
 jupyter notebook notebooks/pipeline.ipynb
 ```
 
-> Für den vollen Lauf: Maschine mit ~16 GB+ RAM und reichlich freiem Festplattenplatz
-> (großzügig 200 GB+ wegen Zwischenergebnissen). Entwicklung läuft am Sample, der volle
-> Lauf wird nur einmal für die finale Abgabe gemacht.
+> For the full run: machine with ~16 GB+ RAM and ample free disk space
+> (generously 200 GB+ for intermediates). Development runs on the sample; the full
+> run is done once for the final submission.
 
 ---
 
-## Pipeline ausführen
+## Running the Pipeline
 
-Das Notebook läuft end-to-end durch. Über die Variable `DATA_MODE` oben im Notebook lässt
-sich zwischen Sample und vollem Datensatz umschalten:
+The notebook runs end-to-end. Use the `DATA_MODE` variable at the top of the notebook
+to switch between sample and full dataset:
 
 ```python
-DATA_MODE = "sample"   # "sample" für schnelle Iteration, "full" für den finalen Lauf
+DATA_MODE = "sample"   # "sample" for fast iteration, "full" for the final run
 ```
 
-Der restliche Code bleibt unverändert — Spark skaliert dieselbe Pipeline von Sample auf das
-volle Fenster.
+The remaining code is unchanged — Spark scales the same pipeline from sample to the
+full window.
 
 ---
 
-## Outputs & Report-Mapping
+## Outputs & Report Mapping
 
-Die Pipeline schreibt ihre **finalen, aggregierten** Ergebnisse nach `results/`
-(eigener Ordner, getrennt von `data/processed/`, das nur Zwischenstände hält).
-Diese Dateien sind klein und nicht-personenbezogen — sie dürfen im Repo/ZIP liegen.
-Der Report wird ausschließlich aus diesen Dateien geschrieben, **nicht** durch
-erneutes Laufenlassen der vollen Pipeline.
+The pipeline writes its **final, aggregated** results to `results/`
+(separate folder, distinct from `data/processed/` which holds only intermediates).
+These files are small and non-personal — they may be included in the repository/ZIP.
+The report is written exclusively from these files, **not** by re-running the full pipeline.
 
-| Output-Datei                        | Inhalt / Schema                                                  | Belegt im Report                           |
-|-------------------------------------|------------------------------------------------------------------|--------------------------------------------|
-| `results/sentiment_timeseries.csv`  | `source, month, mean_sentiment, n` (Reddit + Steam, monatlich)   | Hauptabbildung: zwei Sentiment-Kurven      |
-| `results/patch_overlay.csv`         | `patch_name, release_date` (zum Einzeichnen in die Zeitreihe)    | Patch-Marker auf der Hauptabbildung        |
-| `results/recovery_metric.csv`       | `source, trough_month, recovery_month, recovery_days` je Quelle  | **Kernthese** (Reddit schneller als Steam) |
-| `results/anomaly_flags.csv`         | `source, month, n, is_anomaly` (Volume-Anomaly / Review-Bombing) | Review-Bombing-Abschnitt + Robustheit      |
-| `results/sentiment_excl_bombing.csv`| Sentiment-Zeitreihe **ohne** geflaggte Fenster                   | Metriken „mit und ohne" Bombing-Fenster    |
-| `results/topics.csv`                | `topic_id, top_terms, weight` (LDA / TF-IDF)                     | Topic-Analyse-Abschnitt                    |
-| `results/figures/`                  | exportierte `.png` der finalen Plots                             | direkt in den Report eingebettet           |
+| Output File                          | Content / Schema                                                   | Used in Report                                      |
+|--------------------------------------|--------------------------------------------------------------------|-----------------------------------------------------|
+| `results/sentiment_timeseries.csv`   | `source, month, mean_sentiment, n` (Reddit + Steam, monthly)       | Main figure: two sentiment curves                   |
+| `results/patch_overlay.csv`          | `patch_name, release_date` (for overlay on the time series)        | Patch markers on the main figure                    |
+| `results/recovery_metric.csv`        | `source, trough_month, recovery_month, recovery_days` per source   | **Core thesis** (Reddit recovers faster than Steam) |
+| `results/anomaly_flags.csv`          | `source, month, n, is_anomaly` (volume anomaly / review bombing)   | Review-bombing section + robustness                 |
+| `results/sentiment_excl_bombing.csv` | Sentiment time series **excluding** flagged windows                | Metrics "with and without" bombing windows          |
+| `results/topics.csv`                 | `topic_id, top_terms, weight` (LDA / TF-IDF)                       | Topic analysis section                              |
+| `results/figures/`                   | exported `.png` of final plots                                     | embedded directly in the report                     |
 
-**Regel:** Jede Zahl und jede Abbildung im Report muss auf genau eine Datei unter
-`results/` zurückführbar sein. Kommt eine Aussage in den Report, die hier keine
-Quelle hat, fehlt entweder ein Output oder die Aussage gehört nicht rein.
+**Rule:** Every number and every figure in the report must be traceable to exactly one file under
+`results/`. If a claim appears in the report without a source here, either an output is missing
+or the claim does not belong in the report.
 
-### Reproduzierbarkeit
+### Reproducibility
 
-Damit jede Report-Zahl nachvollziehbar bleibt:
+To keep every report figure traceable:
 
-- **Parameter zentral** oben im Notebook (ein Block), nicht über die Zellen verstreut:
-  `DATA_MODE`, Zeitfenster, Subreddit-Liste, Anomaly-Schwellwert, Anzahl LDA-Topics.
-- **Seed setzen** für alles Stochastische — insbesondere den LDA-Pass
-  (`setSeed(...)`), damit Topics zwischen Läufen stabil sind.
-- Der **`results/`-Stand stammt vom vollen Lauf** (`DATA_MODE = "full"`), nicht vom
-  Sample. In `results/RUN_INFO.txt` festhalten, welcher Modus und welches Datenfenster
-  zugrunde liegt.
+- **Parameters centrally** at the top of the notebook (one block), not scattered across cells:
+  `DATA_MODE`, time window, subreddit list, anomaly threshold, number of LDA topics.
+- **Set seed** for everything stochastic — especially the LDA pass
+  (`setSeed(...)`), so topics remain stable across runs.
+- The **`results/` snapshot comes from the full run** (`DATA_MODE = "full"`), not the sample.
+  Record the mode and data window used in `results/RUN_INFO.txt`.
 
 ---
 
 ## Team
 
-Lab Group 1 — keine festen Rollen; Arbeit nach Arbeitspaketen verteilt (siehe Roadmap).
+Lab Group 1 — no fixed roles; work distributed by work packages (see Roadmap).

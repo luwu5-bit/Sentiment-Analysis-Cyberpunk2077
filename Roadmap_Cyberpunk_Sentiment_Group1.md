@@ -1,80 +1,80 @@
-# Projekt-Roadmap — Anatomy of a Redemption
-### Spark-basierte Multi-Source Sentiment-Analyse von Cyberpunk 2077 · Lab Group 1
+# Project Roadmap — Anatomy of a Redemption
+### Spark-Based Multi-Source Sentiment Analysis of Cyberpunk 2077 · Lab Group 1
 
 ---
 
-## Wo wir stehen
+## Current Status
 
-Das Proposal ist abgegeben (Frist 29.05.2026). Lab 4 (Kafka + Sentiment Analysis) ist durch — wir haben jetzt alle technischen Bausteine. Der nächste und letzte harte Termin ist die **finale Abgabe am 30.06.2026**.
+The proposal has been submitted (deadline 29.05.2026). Lab 4 (Kafka + Sentiment Analysis) is done — we now have all the technical building blocks. The next and final hard deadline is the **final submission on 30.06.2026**.
 
-**Abzugeben (1 ZIP):**
-- Jupyter Notebook(s) inkl. Daten + README (muss durchlaufen, Zell-Outputs drinlassen)
-- HTML-Export der Notebook(s)
-- PDF-Report: max. 8 Seiten (ohne Referenzen), 12pt Times New Roman, einspaltig, einzeilig
+**To submit (1 ZIP):**
+- Jupyter Notebook(s) incl. data + README (must run end-to-end, leave cell outputs in)
+- HTML export of the notebook(s)
+- PDF report: max. 8 pages (excluding references), 12pt Times New Roman, single-column, single-spaced
 
-> **Hinweis zur Organisation:** Die im Proposal genannten Rollen sind nur formal drin — bei uns gibt es keine festen Rollen. Die Roadmap ist deshalb nach Arbeitspaketen gegliedert, nicht nach Personen.
-
----
-
-## Phasen-Übersicht
-
-| Phase | Zeitraum | Fokus |
-|-------|----------|-------|
-| 1 | bis ~14.06. | Data Engineering & Setup |
-| 2 | ~14.–19.06. | Cleaning & Processing |
-| 3 | ~19.–24.06. | Analyse & Modelling |
-| 4 | ~24.–28.06. | Legal/Ethics & Report |
-| 5 | ~28.–30.06. | Finalisierung & Abgabe |
+> **Note on organization:** The roles mentioned in the proposal are formal only — there are no fixed roles. The roadmap is therefore organized by work packages, not by person.
 
 ---
 
-## Phase 1 — Data Engineering & Setup (bis ~14.06.)
+## Phase Overview
 
-- [ ] Spark-Umgebung aufsetzen (lokal, `local[*]`, wie in Lab 4)
-- [ ] Reddit-Monthsdumps besorgen und entpacken
-- [ ] Auf die vier Subreddits filtern: r/cyberpunkgame, r/LowSodiumCyberpunk, r/Games, r/pcgaming
-- [ ] Auf das 34-Monats-Fenster filtern (Dez 2020 – Dez 2023)
-- [ ] Steam-Reviews-Dataset für Cyberpunk 2077 ingestieren
-- [ ] Patch-Timeline-Tabelle anlegen (Patches bis 2.0 / Phantom Liberty)
-- [ ] Git-Repo aufsetzen
+| Phase | Period       | Focus                        |
+|-------|--------------|------------------------------|
+| 1     | until ~14.06.| Data Engineering & Setup     |
+| 2     | ~14.–19.06.  | Cleaning & Processing        |
+| 3     | ~19.–24.06.  | Analysis & Modelling         |
+| 4     | ~24.–28.06.  | Legal/Ethics & Report        |
+| 5     | ~28.–30.06.  | Finalization & Submission    |
 
-> **Größtes Risiko: Datengröße.** Zuerst mit einem Sample (1–2 Monate) arbeiten, damit die Pipeline früh läuft, bevor das volle Fenster gezogen wird.
+---
+
+## Phase 1 — Data Engineering & Setup (until ~14.06.)
+
+- [ ] Set up Spark environment (local, `local[*]`, as in Lab 4)
+- [ ] Obtain Reddit monthly dumps
+- [ ] Filter to the four subreddits: r/cyberpunkgame, r/LowSodiumCyberpunk, r/Games, r/pcgaming
+- [ ] Filter to the 34-month window (Dec 2020 – Dec 2023)
+- [ ] Ingest Steam Reviews dataset for Cyberpunk 2077
+- [ ] Create patch timeline table (patches up to 2.0 / Phantom Liberty)
+- [ ] Set up Git repository
+
+> **Biggest risk: data size.** Work with a sample (1–2 months) first so the pipeline runs early, before pulling the full window.
 
 ## Phase 2 — Cleaning & Processing (~14.–19.06.)
 
-- [ ] Cleaning-Stage für Reddit-JSON und Steam-Reviews (Preprocessing aus Lab 2)
-- [ ] Filtering & Spark-SQL-Aggregationen
-- [ ] Cross-Source-Join gegen die Patch-Timeline
-- [ ] Prüfen, dass die Pipeline unverändert von Sample auf volles Fenster skaliert
+- [ ] Cleaning stage for Reddit JSON and Steam Reviews (preprocessing from Lab 2)
+- [ ] Filtering & Spark SQL aggregations
+- [ ] Cross-source join against the patch timeline
+- [ ] Verify that the pipeline scales unchanged from sample to full window
 
-## Phase 3 — Analyse & Modelling (~19.–24.06.)
+## Phase 3 — Analysis & Modelling (~19.–24.06.)
 
-- [ ] VADER als Spark-UDF auf alle Comments und Reviews anwenden
-- [ ] Topic-Analyse: Wortfrequenz, TF-IDF, einfacher LDA-Pass
-- [ ] Review-Bombing-Anomalie-Flag (Volume-Anomaly-Detection)
-- [ ] Beide Sentiment-Zeitreihen gegen die Patch-Timeline ausrichten
-- [ ] Kernthese prüfen: Reddit erholt sich schneller als Steam
-- [ ] Visualisierungen erstellen
+- [ ] Apply VADER as Spark UDF to all comments and reviews
+- [ ] Topic analysis: word frequency, TF-IDF, simple LDA pass
+- [ ] Review-bombing anomaly flag (volume anomaly detection)
+- [ ] Align both sentiment time series against the patch timeline
+- [ ] Verify core thesis: Reddit recovers faster than Steam
+- [ ] Create visualizations
 
 ## Phase 4 — Legal/Ethics & Report (~24.–28.06.)
 
-- [ ] Lizenz-Sektion Reddit (User Agreement, Public Content Policy, Data API Terms)
-- [ ] Lizenz-Sektion Steam (Steamworks Web API Terms)
-- [ ] GDPR- und Fairness-Sektion
-- [ ] Review-Bombing- und Conflict-of-Interest-Mitigationen dokumentieren
-- [ ] Report schreiben (8-Seiten-Limit, Format beachten)
-- [ ] Bibliographie finalisieren
+- [ ] License section Reddit (User Agreement, Public Content Policy, Data API Terms)
+- [ ] License section Steam (Steamworks Web API Terms)
+- [ ] GDPR and fairness section
+- [ ] Document review-bombing and conflict-of-interest mitigations
+- [ ] Write report (8-page limit, observe format)
+- [ ] Finalize bibliography
 
-> Phase 4 kann komplett **parallel** zu Phase 1–3 laufen. Report-Rohbau früh anfangen.
+> Phase 4 can run completely **in parallel** with phases 1–3. Start the report draft early.
 
-## Phase 5 — Finalisierung & Abgabe (~28.–30.06.)
+## Phase 5 — Finalization & Submission (~28.–30.06.)
 
-- [ ] Notebook komplett durchlaufen lassen, Zell-Outputs drinlassen, speichern
-- [ ] HTML-Export ziehen
-- [ ] README schreiben
-- [ ] PDF gegen Formatvorgaben prüfen (8 Seiten, 12pt TNR, einspaltig, einzeilig)
-- [ ] Alles als 1 ZIP packen und hochladen
+- [ ] Run notebook end-to-end, leave cell outputs in, save
+- [ ] Export HTML
+- [ ] Write README
+- [ ] Check PDF against format requirements (8 pages, 12pt TNR, single-column, single-spaced)
+- [ ] Pack everything as 1 ZIP and upload
 
 ---
 
-**Finale Abgabe: 30.06.2026**
+**Final submission: 30.06.2026**
