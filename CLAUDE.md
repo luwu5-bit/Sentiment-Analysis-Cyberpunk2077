@@ -34,12 +34,20 @@ Das ist der kritischste Teil. Bitte immer beachten:
 - **Zwischenstände als Parquet** speichern, partitioniert nach `source` / `month`.
 - Pipeline muss **unverändert von Sample auf vollen Datensatz** skalieren. Schalter dafür:
   `DATA_MODE = "sample" | "full"` oben im Notebook.
+- **Finale Ergebnisse nach `results/` schreiben** (CSV + `figures/*.png`), getrennt von
+  `data/processed/`. Aus diesen Dateien wird der Report geschrieben — nicht durch erneuten
+  Pipeline-Lauf. Jede Report-Zahl muss auf genau eine `results/`-Datei zurückführbar sein.
+  Output-Liste und Report-Mapping stehen in der README.
+- **Seed für alles Stochastische** setzen (v.a. LDA, `setSeed(...)`), Parameter zentral
+  oben im Notebook bündeln, damit Ergebnisse reproduzierbar bleiben.
 
 ## Ordnerstruktur
 
 ```
 notebooks/   # Haupt-Notebook (pipeline.ipynb), läuft end-to-end
 src/         # ausgelagerte Hilfsfunktionen
+results/     # finale, aggregierte Outputs für den Report (klein, IM Git)
+  figures/   # exportierte Plots (.png)
 data/        # NICHT in Git (außer data/sample/)
   raw/       # heruntergeladene Dumps + Steam-CSV
   processed/ # gefilterte Parquet-Zwischenstände
@@ -70,6 +78,3 @@ data/        # NICHT in Git (außer data/sample/)
 
 Keine festen Rollen. Die im Proposal genannten Zuständigkeiten stehen nur formal drin —
 Arbeit wird in der Praxis nach Arbeitspaketen verteilt, nicht nach Personen.
-
-## Roadmap
-Du kannst die datei Roadmap_Cyberpunk_Sentiment_Group1.md als Unterstützung nehmen. Bitte hacke immer die bereits erstellten Punkte ab, wenn du sicher bist das der schritt implementiert wurde. Weiße mich darauf hin falls punkte selbstständig nachbearbeitet werden müssen. 

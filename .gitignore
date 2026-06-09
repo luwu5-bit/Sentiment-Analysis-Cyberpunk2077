@@ -9,6 +9,11 @@ data/
 !data/sample/
 !data/sample/**
 
+# === Ergebnisse (finale, aggregierte Outputs — sollen committet werden) ===
+# Heben die globalen *.csv-/*.parquet-Ausschlüsse oben für results/ wieder auf
+!results/
+!results/**
+
 # === Jupyter ===
 .ipynb_checkpoints/
 */.ipynb_checkpoints/

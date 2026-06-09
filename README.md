@@ -35,6 +35,9 @@ Wer die volle Pipeline reproduzieren will, muss die Rohdaten zuerst selbst herun
 ├── notebooks/
 │   └── pipeline.ipynb        # Haupt-Notebook (läuft end-to-end durch)
 ├── src/                      # ausgelagerte Hilfsfunktionen (optional)
+├── results/                  # finale, aggregierte Outputs für den Report (klein, IM Repo)
+│   ├── figures/              # exportierte Plots (.png)
+│   └── RUN_INFO.txt          # Modus + Datenfenster des Laufs
 └── data/                     # NICHT in Git (außer sample/)
     ├── raw/                  # heruntergeladene Reddit-Dumps + Steam-CSV
     ├── processed/            # gefilterte Parquet-Zwischenstände
@@ -91,6 +94,42 @@ DATA_MODE = "sample"   # "sample" für schnelle Iteration, "full" für den final
 
 Der restliche Code bleibt unverändert — Spark skaliert dieselbe Pipeline von Sample auf das
 volle Fenster.
+
+---
+
+## Outputs & Report-Mapping
+
+Die Pipeline schreibt ihre **finalen, aggregierten** Ergebnisse nach `results/`
+(eigener Ordner, getrennt von `data/processed/`, das nur Zwischenstände hält).
+Diese Dateien sind klein und nicht-personenbezogen — sie dürfen im Repo/ZIP liegen.
+Der Report wird ausschließlich aus diesen Dateien geschrieben, **nicht** durch
+erneutes Laufenlassen der vollen Pipeline.
+
+| Output-Datei                        | Inhalt / Schema                                                  | Belegt im Report                           |
+|-------------------------------------|------------------------------------------------------------------|--------------------------------------------|
+| `results/sentiment_timeseries.csv`  | `source, month, mean_sentiment, n` (Reddit + Steam, monatlich)   | Hauptabbildung: zwei Sentiment-Kurven      |
+| `results/patch_overlay.csv`         | `patch_name, release_date` (zum Einzeichnen in die Zeitreihe)    | Patch-Marker auf der Hauptabbildung        |
+| `results/recovery_metric.csv`       | `source, trough_month, recovery_month, recovery_days` je Quelle  | **Kernthese** (Reddit schneller als Steam) |
+| `results/anomaly_flags.csv`         | `source, month, n, is_anomaly` (Volume-Anomaly / Review-Bombing) | Review-Bombing-Abschnitt + Robustheit      |
+| `results/sentiment_excl_bombing.csv`| Sentiment-Zeitreihe **ohne** geflaggte Fenster                   | Metriken „mit und ohne" Bombing-Fenster    |
+| `results/topics.csv`                | `topic_id, top_terms, weight` (LDA / TF-IDF)                     | Topic-Analyse-Abschnitt                    |
+| `results/figures/`                  | exportierte `.png` der finalen Plots                             | direkt in den Report eingebettet           |
+
+**Regel:** Jede Zahl und jede Abbildung im Report muss auf genau eine Datei unter
+`results/` zurückführbar sein. Kommt eine Aussage in den Report, die hier keine
+Quelle hat, fehlt entweder ein Output oder die Aussage gehört nicht rein.
+
+### Reproduzierbarkeit
+
+Damit jede Report-Zahl nachvollziehbar bleibt:
+
+- **Parameter zentral** oben im Notebook (ein Block), nicht über die Zellen verstreut:
+  `DATA_MODE`, Zeitfenster, Subreddit-Liste, Anomaly-Schwellwert, Anzahl LDA-Topics.
+- **Seed setzen** für alles Stochastische — insbesondere den LDA-Pass
+  (`setSeed(...)`), damit Topics zwischen Läufen stabil sind.
+- Der **`results/`-Stand stammt vom vollen Lauf** (`DATA_MODE = "full"`), nicht vom
+  Sample. In `results/RUN_INFO.txt` festhalten, welcher Modus und welches Datenfenster
+  zugrunde liegt.
 
 ---
 
