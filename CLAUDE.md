@@ -61,6 +61,10 @@ data/        # NICHT in Git (außer data/sample/)
   für die finale Abgabe gemacht (braucht ~16 GB+ RAM und viel freien Plattenplatz).
 - Code soll auch in einer Notebook-Zelle lauffähig sein (`findspark.init()` zuerst,
   wie im Lab-4-Setup).
+- **Code muss plattformübergreifend laufen (Mac + Windows).** Keine Backslashes/OS-spezifischen
+  Calls; Pfade über die aufgelöste Projekt-Wurzel als POSIX-Strings bilden, damit sie unabhängig
+  vom Jupyter-Arbeitsverzeichnis und vom OS funktionieren. Windows braucht für Parquet-I/O
+  `winutils.exe` + `HADOOP_HOME` (siehe README).
 
 ## Konventionen
 

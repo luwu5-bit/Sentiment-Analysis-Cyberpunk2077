@@ -81,6 +81,17 @@ pip install pyspark findspark vaderSentiment pandas matplotlib
 jupyter notebook notebooks/pipeline.ipynb
 ```
 
+### Windows
+
+The code is cross-platform (macOS + Windows), but PySpark on Windows needs Hadoop's
+`winutils.exe`. Without it, writing Parquet (`partitionBy(...).parquet(...)`) fails. Steps:
+
+1. Download a `winutils.exe` (+ `hadoop.dll`) matching your Hadoop version, e.g. into `C:\hadoop\bin`.
+2. Set `HADOOP_HOME=C:\hadoop` and add `%HADOOP_HOME%\bin` to `PATH`.
+
+On macOS/Linux nothing extra is needed. Paths in the notebook are resolved from the project
+root, so it does not matter whether Jupyter is launched from the root or from `notebooks/`.
+
 > For the full run: machine with ~16 GB+ RAM and ample free disk space
 > (generously 200 GB+ for intermediates). Development runs on the sample; the full
 > run is done once for the final submission.

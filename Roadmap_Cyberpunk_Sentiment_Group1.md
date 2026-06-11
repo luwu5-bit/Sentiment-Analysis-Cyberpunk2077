@@ -35,8 +35,8 @@ The proposal has been submitted (deadline 29.05.2026). Lab 4 (Kafka + Sentiment 
 - [ ] Filter to the four subreddits: r/cyberpunkgame, r/LowSodiumCyberpunk, r/Games, r/pcgaming
 - [ ] Filter to the 34-month window (Dec 2020 – Dec 2023)
 - [ ] Ingest Steam Reviews dataset for Cyberpunk 2077
-- [ ] Create patch timeline table (patches up to 2.0 / Phantom Liberty)
-- [ ] Set up Git repository
+- [x] Create patch timeline table (patches up to 2.0 / Phantom Liberty)
+- [x] Set up Git repository
 
 > **Biggest risk: data size.** Work with a sample (1–2 months) first so the pipeline runs early, before pulling the full window.
 
