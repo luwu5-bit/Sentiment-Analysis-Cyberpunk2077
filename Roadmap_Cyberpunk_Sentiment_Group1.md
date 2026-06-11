@@ -31,7 +31,7 @@ The proposal has been submitted (deadline 29.05.2026). Lab 4 (Kafka + Sentiment 
 ## Phase 1 — Data Engineering & Setup (until ~14.06.)
 
 - [x] Set up Spark environment (local, `local[*]`, as in Lab 4)
-- [ ] Obtain Reddit monthly dumps — **1 of 4 subreddits** (r/cyberpunkgame) done; 3 still to download
+- [x] Obtain Reddit monthly dumps — **all 4 subreddits** downloaded (`.zst` under `data/raw/reddit/`)
 - [x] Filter to the four subreddits: r/cyberpunkgame, r/LowSodiumCyberpunk, r/Games, r/pcgaming
 - [x] Filter to the 34-month window (Dec 2020 – Dec 2023)
 - [x] Ingest Steam Reviews dataset for Cyberpunk 2077
@@ -42,14 +42,14 @@ The proposal has been submitted (deadline 29.05.2026). Lab 4 (Kafka + Sentiment 
 
 ## Phase 2 — Cleaning & Processing (~14.–19.06.)
 
-- [ ] Cleaning stage for Reddit JSON and Steam Reviews (preprocessing from Lab 2)
-- [ ] Filtering & Spark SQL aggregations
+- [x] Cleaning stage for Reddit JSON and Steam Reviews (preprocessing from Lab 2)
+- [x] Filtering & Spark SQL aggregations (monthly × source sentiment)
 - [ ] Cross-source join against the patch timeline
-- [ ] Verify that the pipeline scales unchanged from sample to full window
+- [x] Verify that the pipeline scales unchanged from sample to full window (`DATA_MODE` + sample carve)
 
 ## Phase 3 — Analysis & Modelling (~19.–24.06.)
 
-- [ ] Apply VADER as Spark UDF to all comments and reviews
+- [x] Apply VADER as Spark UDF to all comments and reviews
 - [ ] Topic analysis: word frequency, TF-IDF, simple LDA pass
 - [ ] Review-bombing anomaly flag (volume anomaly detection)
 - [ ] Align both sentiment time series against the patch timeline
