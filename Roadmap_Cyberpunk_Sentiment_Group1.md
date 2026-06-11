@@ -30,11 +30,11 @@ The proposal has been submitted (deadline 29.05.2026). Lab 4 (Kafka + Sentiment 
 
 ## Phase 1 — Data Engineering & Setup (until ~14.06.)
 
-- [ ] Set up Spark environment (local, `local[*]`, as in Lab 4)
-- [ ] Obtain Reddit monthly dumps
-- [ ] Filter to the four subreddits: r/cyberpunkgame, r/LowSodiumCyberpunk, r/Games, r/pcgaming
-- [ ] Filter to the 34-month window (Dec 2020 – Dec 2023)
-- [ ] Ingest Steam Reviews dataset for Cyberpunk 2077
+- [x] Set up Spark environment (local, `local[*]`, as in Lab 4)
+- [ ] Obtain Reddit monthly dumps — **1 of 4 subreddits** (r/cyberpunkgame) done; 3 still to download
+- [x] Filter to the four subreddits: r/cyberpunkgame, r/LowSodiumCyberpunk, r/Games, r/pcgaming
+- [x] Filter to the 34-month window (Dec 2020 – Dec 2023)
+- [x] Ingest Steam Reviews dataset for Cyberpunk 2077
 - [x] Create patch timeline table (patches up to 2.0 / Phantom Liberty)
 - [x] Set up Git repository
 

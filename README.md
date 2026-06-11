@@ -52,8 +52,9 @@ To reproduce the full pipeline, the raw data must be downloaded first
 ### Reddit (Pushshift Monthly Dumps)
 1. Download monthly dumps for **Dec 2020 – Dec 2023**
    (e.g. via academic torrents / Pushshift archive, `.zst`-compressed, line-delimited JSON).
-2. Place files under `data/raw/reddit/`, **do not unpack** —
-   Spark reads `.zst` directly.
+2. Place files under `data/raw/reddit/` (e.g. `cyberpunkgame_comments.zst`,
+   `cyberpunkgame_submissions.zst`). The notebook decompresses them to `.jsonl` once on the
+   fly (the pip PySpark build cannot read `.zst` directly), so you keep the `.zst` as-is.
 
 ### Steam Reviews
 1. Download the public Steam Reviews dataset, filter for Cyberpunk 2077 (App-ID 1091500).

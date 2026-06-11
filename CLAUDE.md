@@ -31,7 +31,10 @@ Das ist der kritischste Teil. Bitte immer beachten:
   kleinen Ergebnis für Plots.
 - **Sofort beim Einlesen filtern** (Subreddits + Zeitfenster), bevor irgendwas anderes
   passiert. Aus 15 GB/Monat soll früh ein Bruchteil werden.
-- **`.zst`-Dumps direkt lesen**, nicht entpacken — Spark kann das.
+- **`.zst`-Dumps müssen vor Spark entpackt werden.** Die pip-PySpark-Distribution (Hadoop ohne
+  nativen zstd-Codec) kann `.zst` NICHT direkt lesen. Daher im Notebook einmalig nach `.jsonl`
+  entpacken — plattformübergreifend über das `zstandard`-Paket (nicht die `zstd`-CLI), idempotent
+  gecacht. Die `.jsonl` sind groß (~15 GB für die Comments) und gehören NICHT ins Git.
 - **Zwischenstände als Parquet** speichern, partitioniert nach `source` / `month`.
 - Pipeline muss **unverändert von Sample auf vollen Datensatz** skalieren. Schalter dafür:
   `DATA_MODE = "sample" | "full"` oben im Notebook.

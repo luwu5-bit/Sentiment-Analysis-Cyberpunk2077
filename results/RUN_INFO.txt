@@ -1,0 +1,5 @@
+DATA_MODE = full
+window    = 2020-12-01 .. 2023-12-31
+subreddits= ['cyberpunkgame', 'LowSodiumCyberpunk', 'Games', 'pcgaming']
+seed      = 42
+generated = 2026-06-11T00:44:56.649973+00:00
