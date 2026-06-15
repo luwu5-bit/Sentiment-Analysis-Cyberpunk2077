@@ -50,11 +50,11 @@ The proposal has been submitted (deadline 29.05.2026). Lab 4 (Kafka + Sentiment 
 ## Phase 3 — Analysis & Modelling (~19.–24.06.)
 
 - [x] Apply VADER as Spark UDF to all comments and reviews
-- [ ] Topic analysis: word frequency, TF-IDF, simple LDA pass
-- [ ] Review-bombing anomaly flag (volume anomaly detection)
-- [ ] Align both sentiment time series against the patch timeline
-- [ ] Verify core thesis: Reddit recovers faster than Steam
-- [ ] Create visualizations
+- [ ] Topic analysis: word frequency, TF-IDF, simple LDA pass — *LDA done (5e, seeded); word frequency + TF-IDF still missing*
+- [x] Review-bombing anomaly flag (volume anomaly detection) — *5b: monthly volume z-score > threshold → `anomaly_flags.csv`*
+- [x] Align both sentiment time series against the patch timeline — *5a: both curves + patch markers → `sentiment_timeline.png`*
+- [ ] Verify core thesis: Reddit recovers faster than Steam — *recovery metric coded (5d); verification pending full run (sample = 1 month)*
+- [ ] Create visualizations — *main timeline figure done (5a); more figures still to add*
 
 ## Phase 4 — Legal/Ethics & Report (~24.–28.06.)
 
