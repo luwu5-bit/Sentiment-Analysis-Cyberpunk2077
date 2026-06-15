@@ -127,7 +127,11 @@ The report is written exclusively from these files, **not** by re-running the fu
 | `results/recovery_metric.csv`        | `source, trough_month, recovery_month, recovery_days` per source   | **Core thesis** (Reddit recovers faster than Steam) |
 | `results/anomaly_flags.csv`          | `source, month, n, is_anomaly` (volume anomaly / review bombing)   | Review-bombing section + robustness                 |
 | `results/sentiment_excl_bombing.csv` | Sentiment time series **excluding** flagged windows                | Metrics "with and without" bombing windows          |
-| `results/topics.csv`                 | `topic_id, top_terms, weight` (LDA / TF-IDF)                       | Topic analysis section                              |
+| `results/topics.csv`                 | `topic_id, top_terms, weight` (LDA)                                | Topic analysis section                              |
+| `results/word_frequency.csv`         | `source, rank, term, count` (top terms per source)                | Topic analysis section (word frequency)             |
+| `results/tfidf_top_terms.csv`        | `term, tf, df, idf, tfidf` (most distinctive terms)               | Topic analysis section (TF-IDF)                     |
+| `results/sentiment_patch_join.csv`   | `source, month, n, mean_sentiment, patches, has_patch`            | Sentiment aligned to patch events (cross-source)    |
+| `results/vader_validation.csv`       | `metric, value` (mean/class, point-biserial corr, accuracy)       | Method validation: VADER vs. Steam rating           |
 | `results/figures/`                   | exported `.png` of final plots                                     | embedded directly in the report                     |
 
 **Rule:** Every number and every figure in the report must be traceable to exactly one file under

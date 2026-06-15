@@ -44,17 +44,17 @@ The proposal has been submitted (deadline 29.05.2026). Lab 4 (Kafka + Sentiment 
 
 - [x] Cleaning stage for Reddit JSON and Steam Reviews (preprocessing from Lab 2)
 - [x] Filtering & Spark SQL aggregations (monthly × source sentiment)
-- [ ] Cross-source join against the patch timeline
+- [x] Cross-source join against the patch timeline — *4b: monthly sentiment ⋈ patch timeline → `sentiment_patch_join.csv`*
 - [x] Verify that the pipeline scales unchanged from sample to full window (`DATA_MODE` + sample carve)
 
 ## Phase 3 — Analysis & Modelling (~19.–24.06.)
 
 - [x] Apply VADER as Spark UDF to all comments and reviews
-- [ ] Topic analysis: word frequency, TF-IDF, simple LDA pass — *LDA done (5e, seeded); word frequency + TF-IDF still missing*
+- [x] Topic analysis: word frequency, TF-IDF, simple LDA pass — *5e LDA (seeded) + 5f word frequency & TF-IDF*
 - [x] Review-bombing anomaly flag (volume anomaly detection) — *5b: monthly volume z-score > threshold → `anomaly_flags.csv`*
 - [x] Align both sentiment time series against the patch timeline — *5a: both curves + patch markers → `sentiment_timeline.png`*
 - [ ] Verify core thesis: Reddit recovers faster than Steam — *recovery metric coded (5d); verification pending full run (sample = 1 month)*
-- [ ] Create visualizations — *main timeline figure done (5a); more figures still to add*
+- [x] Create visualizations — *5a timeline, 5g VADER-validation, 5h volume + TF-IDF bars + recovery (figures under `results/figures/`)*
 
 ## Phase 4 — Legal/Ethics & Report (~24.–28.06.)
 

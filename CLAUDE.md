@@ -75,6 +75,8 @@ data/        # NICHT in Git (außer data/sample/)
 - Spaltennamen des Steam-Datasets (`review`, `timestamp_created` etc.) ggf. an das
   konkret verwendete Dataset anpassen — vor dem Hardcoden prüfen.
 - Vor jedem Notebook-Commit: alle Zellen durchlaufen lassen, Outputs drinlassen, speichern.
+- **Commits macht der Nutzer immer manuell über GitHub Desktop.** Claude committet/pusht nicht
+  selbst — nur Dateien ändern und den Nutzer committen lassen.
 
 ## Abgabe (1 ZIP)
 

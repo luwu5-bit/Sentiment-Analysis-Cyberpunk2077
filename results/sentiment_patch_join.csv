@@ -1,0 +1,3 @@
+source,month,n,mean_sentiment,patches,has_patch
+reddit,2020-12,28545,0.2157,1.0 (Launch),True
+steam,2020-12,1819,0.3269,1.0 (Launch),True
