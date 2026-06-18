@@ -1,8 +1,8 @@
 metric,value
-n_Not_Recommended,547.0
-mean_sentiment_Not_Recommended,0.122
-n_Recommended,1272.0
-mean_sentiment_Recommended,0.415
-n_total,1819.0
-point_biserial_corr,0.232
-accuracy_thresh0,0.6306
+n_Not_Recommended,41642.0
+mean_sentiment_Not_Recommended,0.112
+n_Recommended,200046.0
+mean_sentiment_Recommended,0.5729
+n_total,241688.0
+point_biserial_corr,0.33
+accuracy_thresh0,0.7732
