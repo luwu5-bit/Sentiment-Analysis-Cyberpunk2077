@@ -1,0 +1,3 @@
+source,overall_mean,launch_mean,plateau_mean,climb,trough_month,trough_sentiment,peak_month,peak_sentiment
+reddit,0.1499,0.1378,0.1358,-0.002,2023-10,0.1088,2021-11,0.1835
+steam,0.4979,0.4805,0.5074,0.0269,2021-05,0.4243,2022-05,0.5444

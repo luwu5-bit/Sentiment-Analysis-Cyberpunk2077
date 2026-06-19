@@ -124,7 +124,7 @@ The report is written exclusively from these files, **not** by re-running the fu
 |--------------------------------------|--------------------------------------------------------------------|-----------------------------------------------------|
 | `results/sentiment_timeseries.csv`   | `source, month, mean_sentiment, n` (Reddit + Steam, monthly)       | Main figure: two sentiment curves                   |
 | `results/patch_overlay.csv`          | `patch_name, release_date` (for overlay on the time series)        | Patch markers on the main figure                    |
-| `results/recovery_metric.csv`        | `source, trough_month, recovery_month, recovery_days` per source   | **Core thesis** (Reddit recovers faster than Steam) |
+| `results/redemption_metrics.csv`     | `source, overall_mean, launch_mean, plateau_mean, climb, trough/peak` | **Key finding** (asymmetric redemption: Steam climbs, Reddit stays low) |
 | `results/anomaly_flags.csv`          | `source, month, n, is_anomaly` (volume anomaly / review bombing)   | Review-bombing section + robustness                 |
 | `results/sentiment_excl_bombing.csv` | Sentiment time series **excluding** flagged windows                | Metrics "with and without" bombing windows          |
 | `results/topics.csv`                 | `topic_id, top_terms, weight` (LDA)                                | Topic analysis section                              |
@@ -132,6 +132,7 @@ The report is written exclusively from these files, **not** by re-running the fu
 | `results/tfidf_top_terms.csv`        | `term, tf, df, idf, tfidf` (most distinctive terms)               | Topic analysis section (TF-IDF)                     |
 | `results/sentiment_patch_join.csv`   | `source, month, n, mean_sentiment, patches, has_patch`            | Sentiment aligned to patch events (cross-source)    |
 | `results/vader_validation.csv`       | `metric, value` (mean/class, point-biserial corr, accuracy)       | Method validation: VADER vs. Steam rating           |
+| `results/model_comparison.csv`       | `model, threshold, accuracy, f1, auc, n_test` (MLlib vs. VADER)    | Supervised baseline vs. VADER (method comparison)   |
 | `results/figures/`                   | exported `.png` of final plots                                     | embedded directly in the report                     |
 
 **Rule:** Every number and every figure in the report must be traceable to exactly one file under

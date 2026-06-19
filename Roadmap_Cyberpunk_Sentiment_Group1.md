@@ -53,8 +53,8 @@ The proposal has been submitted (deadline 29.05.2026). Lab 4 (Kafka + Sentiment 
 - [x] Topic analysis: word frequency, TF-IDF, simple LDA pass — *5e LDA (seeded) + 5f word frequency & TF-IDF*
 - [x] Review-bombing anomaly flag (volume anomaly detection) — *5b: monthly volume z-score > threshold → `anomaly_flags.csv`*
 - [x] Align both sentiment time series against the patch timeline — *5a: both curves + patch markers → `sentiment_timeline.png`*
-- [ ] Verify core thesis: Reddit recovers faster than Steam — *recovery metric coded (5d); verification pending full run (sample = 1 month)*
-- [x] Create visualizations — *5a timeline, 5g VADER-validation, 5h volume + TF-IDF bars + recovery (figures under `results/figures/`)*
+- [x] Tested core thesis on the full run — *original "Reddit recovers faster" not supported; sentiment never goes negative. Reframed (Option 2): **asymmetric redemption** — Steam climbs to a high plateau, Reddit stays low/critical, launch crisis = volume shock. Metrics in 5d → `redemption_metrics.csv`; see `results/FINDINGS.md`*
+- [x] Create visualizations — *5a timeline, 5g VADER-validation, 5h volume + TF-IDF bars + redemption climb (figures under `results/figures/`)*
 
 ## Phase 4 — Legal/Ethics & Report (~24.–28.06.)
 
