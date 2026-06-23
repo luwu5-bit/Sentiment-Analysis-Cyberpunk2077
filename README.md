@@ -133,6 +133,7 @@ The report is written exclusively from these files, **not** by re-running the fu
 | `results/sentiment_patch_join.csv`   | `source, month, n, mean_sentiment, patches, has_patch`            | Sentiment aligned to patch events (cross-source)    |
 | `results/vader_validation.csv`       | `metric, value` (mean/class, point-biserial corr, accuracy)       | Method validation: VADER vs. Steam rating           |
 | `results/model_comparison.csv`       | `model, threshold, accuracy, f1, auc, n_test` (MLlib vs. VADER)    | Supervised baseline vs. VADER (method comparison)   |
+| `results/steam_trend_robustness.csv` | `month, vader_mean, model_mean_prob, n` (Steam)                    | Robustness: VADER trend vs. trained model (Steam)   |
 | `results/figures/`                   | exported `.png` of final plots                                     | embedded directly in the report                     |
 
 **Rule:** Every number and every figure in the report must be traceable to exactly one file under

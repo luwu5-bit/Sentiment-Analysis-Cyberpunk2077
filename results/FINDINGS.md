@@ -83,3 +83,14 @@ VADER (**0.686**); VADER at threshold 0 even trails the majority-class baseline 
 recommend/not-recommend decision. We keep VADER for the time-series analysis (it needs no labels and runs
 over both unlabelled Reddit and Steam), and report this comparison as a method validation / limitation.
 → `model_comparison.csv`, `figures/model_comparison.png`
+
+## Robustness — is VADER's trend trustworthy? (Steam)
+Stage 6 raises a fair worry: if VADER is the less accurate classifier, can we trust its *time series* for the
+figures? On Steam (the only side with a trained model) we compared VADER's monthly mean compound with the
+trained model's monthly mean **P(Recommended)**. The two monthly series move together at **Pearson r = 0.83** —
+both dip toward the 2021 trough and climb to the 2022–2023 plateau — even though their absolute scales differ
+(VADER 0.42–0.54 vs. model 0.75–0.89). So VADER's **trend** is validated by the more accurate instrument; its
+mis-calibrated *absolute* level does not affect the *relative / temporal* conclusions. The model cannot be
+applied to Reddit (no labels), so the Reddit curve still rests on VADER — but this cross-check justifies using
+VADER consistently for the time-series figures.
+→ `steam_trend_robustness.csv`, `figures/steam_trend_robustness.png`

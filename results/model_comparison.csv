@@ -1,4 +1,4 @@
 model,threshold,accuracy,f1,auc,n_test
 VADER (thr=0),0.0,0.775,0.7854,0.6855,48232
 VADER (thr=0.37),0.37,0.7297,0.755,0.6855,48232
-MLlib LogReg (TF-IDF),,0.8915,0.8863,0.8874,48232
+MLlib LogReg (TF-IDF),,0.8911,0.886,0.8873,48232
