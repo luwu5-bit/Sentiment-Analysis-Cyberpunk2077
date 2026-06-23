@@ -2,4 +2,4 @@ DATA_MODE = full
 window    = 2020-12-01 .. 2023-12-31
 subreddits= ['cyberpunkgame', 'LowSodiumCyberpunk', 'Games', 'pcgaming']
 seed      = 42
-generated = 2026-06-23T10:32:57.980586+00:00
+generated = 2026-06-23T15:03:13.336292+00:00
