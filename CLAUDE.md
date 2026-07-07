@@ -7,7 +7,7 @@ alle kommentare und texte die wichtig für die abgabe sind sollen in englisch ge
 
 **Anatomy of a Redemption** — Spark-basierte Multi-Source Sentiment-Analyse von
 Cyberpunk 2077. Batch-Pipeline in Apache Spark, die Reddit-Kommentare und Steam-Reviews
-über das 34-Monats-Fenster (Dez 2020 – Dez 2023) verarbeitet, mit VADER ein Sentiment
+über das 37-Monats-Fenster (Dez 2020 – Dez 2023) verarbeitet, mit VADER ein Sentiment
 vergibt und zwei Sentiment-Zeitreihen gegen eine Patch-Timeline ausrichtet.
 
 Universitätsprojekt (Data Processing 2, SS 2026, Lab Group 1). Finale Abgabe: **30.06.2026**.

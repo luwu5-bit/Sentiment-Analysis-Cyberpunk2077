@@ -1,7 +1,7 @@
 # Key Findings — Anatomy of a Redemption
 
 Data-grounded summary written from the `results/` snapshot of the **full run**
-(`DATA_MODE = full`, 34-month window Dec 2020 – Dec 2023, 7,837,729 documents;
+(`DATA_MODE = full`, 37-month window Dec 2020 – Dec 2023, 7,837,729 documents;
 see `RUN_INFO.txt`). Every number below traces to a file in `results/`.
 
 The headline thesis from the proposal — *"Reddit sentiment recovers faster than Steam"* —

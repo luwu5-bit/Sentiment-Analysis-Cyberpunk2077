@@ -144,7 +144,7 @@ Diese sind in der Pipeline **nicht** abgedeckt — rein Schreibarbeit:
 
 ## 7 · Reproduzierbarkeit / Provenance
 
-- Die `results/`-Dateien stammen aus dem **Full-Run** (`DATA_MODE = "full"`, gesamtes 34-Monats-Fenster,
+- Die `results/`-Dateien stammen aus dem **Full-Run** (`DATA_MODE = "full"`, gesamtes 37-Monats-Fenster,
   Seed 42). Exakte Provenance in `results/RUN_INFO.txt`.
 - Für die **Abgabe** wird das Notebook auf `DATA_MODE = "sample"` zurückgestellt (das ZIP enthält nur das
   kleine Sample, nicht die ~70 GB Rohdaten) — der Code-Pfad ist identisch. Das ist ein Finalisierungs-Schritt;
