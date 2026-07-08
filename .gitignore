@@ -16,6 +16,10 @@ data/*
 !results/
 !results/**
 
+# Sample-Mode-Outputs: ein Sample-Lauf schreibt hierhin (nie nach results/),
+# damit der Full-Run-Snapshot nie überschrieben wird. Wegwerfbar — nie committen.
+results_sample/
+
 # === Jupyter ===
 .ipynb_checkpoints/
 */.ipynb_checkpoints/
