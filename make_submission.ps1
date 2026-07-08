@@ -12,8 +12,8 @@ Copy-Item README.md $stage
 Copy-Item notebooks\pipeline.ipynb, notebooks\pipeline.html "$stage\notebooks"
 Copy-Item -Recurse data\sample "$stage\data\sample"
 Copy-Item -Recurse results "$stage\results"
-if (Test-Path Project Report_Group 1.pdf) { Copy-Item Project Report_Group 1.pdf $stage; $pdf = 'included' }
-else { $pdf = 'MISSING — add report.pdf to the project root and re-run' }
+if (Test-Path "Project Report_Group 1.pdf") { Copy-Item "Project Report_Group 1.pdf" $stage; $pdf = 'included' }
+else { $pdf = 'MISSING — add "Project Report_Group 1.pdf" to the project root and re-run' }
 
 if (Test-Path $zip) { Remove-Item $zip }
 Compress-Archive -Path "$stage\*" -DestinationPath $zip -CompressionLevel Optimal
